@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Home Latest Game Thumbnail
 // @namespace    http://thelmgn.com/
-// @version      0.1
+// @version      0.2
 // @description  Replaces the background of the Roblox home page with the thumbnails of the latest game you played.
 // @author       theLMGN
 // @match        https://roblox.com/home
@@ -22,7 +22,7 @@
     // remove overlays
     var el= document.createElement('style');
     el.type= "text/css";
-    el.appendChild(document.createTextNode("#container-main,.content { background: transparent !important; }"))
+    el.appendChild(document.createTextNode("#container-main,.content { background: transparent !important; } html {--btr-theme-color: transparent;}"))
     console.log(el)
     document.getElementsByTagName('head')[0].appendChild(el);
 
