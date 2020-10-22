@@ -24,7 +24,7 @@
     el.type= "text/css";
     el.appendChild(document.createTextNode("#container-main,.content { background: transparent !important; }"))
     console.log(el)
-    return document.getElementsByTagName('head')[0].appendChild(el);
+    document.getElementsByTagName('head')[0].appendChild(el);
 
 
     // fetch recents sort token
