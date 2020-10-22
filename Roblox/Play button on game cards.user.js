@@ -10,16 +10,21 @@
 
 (function() {
     'use strict';
-    var buttonString = `<div id="MultiplayerVisitButton" class="VisitButton VisitButtonPlayGLI" onclick="Roblox.GameLauncher.joinMultiplayerGame(gameId)" style="position: absolute;z-index: 999;opacity: 0.5;"><a class="btn-common-play-game-lg" style="padding:0;"> <span class="icon-play-game"></span> </a></div> <style>.thumbnail-2d-container img.loading {opacity: 1 !important;}</style>`
+    var buttonString = `<a class="btn-common-play-game-lg" style="padding:0;"> <span class="icon-play-game"></span> </a> <style>.thumbnail-2d-container img.loading {opacity: 1 !important;}</style>`
     console.log("pbgc",setInterval(function() {
-        for (var gCard of document.querySelectorAll(".game-card-container")) {
+        for (var gCard of document.querySelectorAll(".game-card-container:not(.hasBtn)")) {
             var gameId = gCard.querySelector(".game-card-link").href.split("PlaceId=")[1].split("&")[0]
-            if (!gCard.innerHTML.includes(buttonString.replace("gameId",gameId))) {
-                gCard.innerHTML = buttonString.replace("gameId",gameId) + gCard.innerHTML
-            }
+            var div = document.createElement("DIV")
+            div.id = "MultiplayerVisitButton"
+            div.className="VisitButton VisitButtonPlayGLI"
+            div.onclick=function(){Roblox.GameLauncher.joinMultiplayerGame(gameId)}
+            div.style="position: absolute;z-index: 999;opacity: 0.5;"
+            div.innerHTML = buttonString
+            gCard.insertBefore(div,gCard.firstChild)
+            gCard.classList.add("hasBtn")
             if (gCard.querySelector("img")) {
                 gCard.querySelector("img").style.opacity = "1"
             }
         }
-    },5000))
+    },1000))
 })();
