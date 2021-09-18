@@ -10,10 +10,11 @@
 
 (function() {
     'use strict';
-    var buttonString = `<a class="btn-common-play-game-lg" style="padding:0;"> <span class="icon-play-game"></span> </a> <style>.thumbnail-2d-container img.loading {opacity: 1 !important;}</style>`
+    var buttonString = `<a class="btn-common-play-game-lg" style="padding:0;"> <span class="icon-play-game"></span> </a> <style>.thumbnail-2d-container img.loading {opacity: 1 !important;} .grid-item-container{align-items: start;}</style>`
     console.log("pbgc",setInterval(function() {
         for (let gCard of document.querySelectorAll(".game-card-container:not(.hasBtn)")) {
-            let gameId = gCard.querySelector(".game-card-link").href.split("PlaceId=")[1].split("&")[0]
+            href =  gCard.querySelector(".game-card-link").href;
+            let gameId = href.includes("PlaceId=") ? href.split("PlaceId=")[1].split("&")[0] : href.split("/")[4].split("&")[0]
             let div = document.createElement("DIV")
             div.id = "MultiplayerVisitButton"
             div.className="VisitButton VisitButtonPlayGLI"
